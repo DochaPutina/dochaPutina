@@ -1,0 +1,1 @@
+class obj( coordinates:Double)
