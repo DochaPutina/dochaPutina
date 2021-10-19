@@ -65,8 +65,8 @@ object Render {
 
   def renderTriangle(img: BufferedImage, x1: Double, y1: Double, x2: Double, y2: Double, x3: Double, y3: Double, color: Int): Unit = {
     var ArrayRect = rect(x1, y1, x2, y2, x3, y3)
-    for (i <- Math.min(x1, Math.min(x2, x3)).toInt until Math.max(x1, Math.max(x2, x3)).toInt) {
-      for (j <- Math.min(y1, Math.min(y2, y3)).toInt until Math.max(y1, Math.max(y2, y3)).toInt) {
+    for (i <- Math.min(x1, Math.min(x2, x3)).toInt to Math.max(x1, Math.max(x2, x3)).toInt) {
+      for (j <- Math.min(y1, Math.min(y2, y3)).toInt to Math.max(y1, Math.max(y2, y3)).toInt) {
         val ax = x2 - x1
         val bx = x3 - x1
         val cx = (i - x1)
@@ -79,7 +79,7 @@ object Render {
         val u = detu / detT
         val v = detv / detT
         if(0.0<=v&&0.0<=u&&u+v<=1){
-          img.setRGB(i,j,new Color(u.toFloat,v.toFloat,1-u.toFloat-v.toFloat).getRGB)
+          img.setRGB(i,j,new Color(1).getRGB)
         }
 
       }

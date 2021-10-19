@@ -6,7 +6,20 @@ import javax.swing.{JFrame, WindowConstants}
 object Main {
   def draw(g: Graphics2D): Unit = {
     val img = new BufferedImage(1000, 1000, BufferedImage.TYPE_INT_ARGB)
-    Render.renderTriangleAround(img,300,300,1)
+    var Gargulia = new obj("garg.obj"," ")
+    for(i<-Gargulia.ArrayOfPoligons.indices){
+      Render.renderTriangle(img,
+        Gargulia.ArrayOfPoint(Gargulia.ArrayOfPoligons(i).frst-1).x+100,
+        Gargulia.ArrayOfPoint(Gargulia.ArrayOfPoligons(i).frst-1).y+100,
+        Gargulia.ArrayOfPoint(Gargulia.ArrayOfPoligons(i).scnd-1).x+100,
+        Gargulia.ArrayOfPoint(Gargulia.ArrayOfPoligons(i).scnd-1).y+100,
+        Gargulia.ArrayOfPoint(Gargulia.ArrayOfPoligons(i).thrd-1).x+100,
+        Gargulia.ArrayOfPoint(Gargulia.ArrayOfPoligons(i).thrd-1).y+100,1)
+
+    }
+
+
+
     g.drawImage(img, 0, 0, null)
   }
 
@@ -20,6 +33,7 @@ object Main {
     jf.setVisible(true)
     jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE)
     jf.createBufferStrategy(2)
+
     //в бесконечном цикле рисуем новый кадр
     while (true) {
       val frameLength = 1000 / 60 //пытаемся работать из рассчета  60 кадров в секунду
